@@ -1,1 +1,753 @@
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب صيانة - سمارت جولد لينك</title>
+    
+    <style>
+        /* ====== الأنماط الأساسية ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            max-width: 750px;
+            width: 100%;
+            padding: 40px 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            color: #0f2b5c;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .form-header .subtitle {
+            color: #6c757d;
+            font-size: 15px;
+        }
+
+        .form-header .subtitle span {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .required-star {
+            color: #e53e3e;
+            margin-right: 3px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+            color: #2d3748;
+            width: 100%;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #0f2b5c;
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(15, 43, 92, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* ====== حالة الخطأ ====== */
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #e53e3e;
+            background: #fff5f5;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* ====== حقل الموقع المحسن ====== */
+        .location-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .location-container input {
+            flex: 2;
+            min-width: 150px;
+        }
+
+        .location-presets {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            flex: 3;
+        }
+
+        .location-presets .preset-btn {
+            padding: 10px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: #f7fafc;
+            color: #2d3748;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .location-presets .preset-btn:hover {
+            border-color: #0f2b5c;
+            background: #edf2f7;
+        }
+
+        .location-presets .preset-btn.active {
+            border-color: #0f2b5c;
+            background: #0f2b5c;
+            color: white;
+        }
+
+        .location-presets .preset-btn .emoji {
+            margin-left: 4px;
+        }
+
+        /* ====== الأزرار ====== */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 180px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: #0f2b5c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1a3f7a;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: #d4af37;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #c49a2e;
+        }
+
+        /* ====== Toast Notification ====== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 28px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            animation: slideUp 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 90%;
+        }
+
+        .toast-success { background: #38a169; }
+        .toast-error { background: #e53e3e; }
+        .toast-warning { background: #d69e2e; }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 5px;
+            opacity: 0.8;
+        }
+
+        .toast-close:hover { opacity: 1; }
+
+        /* ====== Spinner ====== */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s ease infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ====== استجابة للجوال ====== */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 25px 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: unset;
+                width: 100%;
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .form-header h1 {
+                font-size: 22px;
+            }
+
+            .location-container {
+                flex-direction: column;
+            }
+
+            .location-presets {
+                justify-content: center;
+            }
+        }
+
+        /* ====== تحسينات إضافية ====== */
+        .hint {
+            font-size: 12px;
+            color: #a0aec0;
+            margin-top: 2px;
+        }
+
+        .form-group .char-count {
+            text-align: left;
+            font-size: 12px;
+            color: #a0aec0;
+        }
+
+        .location-presets .preset-btn .label {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- ====== HEADER ====== -->
+        <div class="form-header">
+            <h1>🔧 طلب صيانة</h1>
+            <p class="subtitle">سمارت جولد لينك <span>•</span> خدمة ما بعد البيع</p>
+        </div>
+
+        <!-- ====== FORM ====== -->
+        <form id="maintenanceForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+            
+            <!-- حقول مخفية -->
+            <input type="hidden" name="_subject" value="طلب صيانة جديد - سمارت جولد لينك">
+            <input type="hidden" name="_replyto" value="Fahdayalasalman@gmail.com">
+            <input type="hidden" name="_language" value="ar">
+
+            <div class="form-grid">
+                <!-- نوع الجهاز -->
+                <div class="form-group" id="typeGroup">
+                    <label for="applianceType">نوع الجهاز <span class="required-star">*</span></label>
+                    <select id="applianceType" name="appliance_type" required aria-required="true">
+                        <option value="">-- اختر نوع الجهاز --</option>
+                        <option value="تكييف">❄️ نظام تكييف</option>
+                        <option value="غسالة">🧺 غسالة ملابس</option>
+                        <option value="ثلاجة">🧊 ثلاجة / فريزر</option>
+                        <option value="شاشة">📺 شاشة ذكية</option>
+                        <option value="فرن">🔥 فرن / ميكروويف</option>
+                        <option value="أخرى">⚙️ أخرى</option>
+                    </select>
+                    <div class="error-message" id="typeError">يرجى اختيار نوع الجهاز</div>
+                </div>
+
+                <!-- الماركة -->
+                <div class="form-group" id="brandGroup">
+                    <label for="applianceBrand">الماركة <span class="required-star">*</span></label>
+                    <input type="text" id="applianceBrand" name="brand" placeholder="مثال: LG, Samsung, إلخ" required aria-required="true">
+                    <div class="error-message" id="brandError">يرجى كتابة ماركة الجهاز</div>
+                </div>
+
+                <!-- الهاتف -->
+                <div class="form-group full-width" id="phoneGroup">
+                    <label for="customerPhone">رقم الهاتف للتواصل <span class="required-star">*</span></label>
+                    <input type="tel" id="customerPhone" name="phone" placeholder="07XXXXXXXX أو +9627XXXXXXXX" required aria-required="true">
+                    <div class="hint">📱 مثال: 0791234567 أو +962791234567</div>
+                    <div class="error-message" id="phoneError">يرجى إدخال رقم هاتف أردني صحيح</div>
+                </div>
+
+                <!-- ====== الموقع المحسن ====== -->
+                <div class="form-group full-width" id="locationGroup">
+                    <label for="customerLocation">📍 الموقع <span class="required-star">*</span></label>
+                    <div class="location-container">
+                        <input type="text" id="customerLocation" name="location" placeholder="اكتب الموقع بالتفصيل..." value="العبدلي - عمان" required aria-required="true">
+                        <div class="location-presets">
+                            <button type="button" class="preset-btn active" data-location="العبدلي - عمان">
+                                <span class="emoji">🏢</span> العبدلي
+                            </button>
+                            <button type="button" class="preset-btn" data-location="الشميساني - عمان">
+                                <span class="emoji">🏙️</span> الشميساني
+                            </button>
+                            <button type="button" class="preset-btn" data-location="جبل عمان - عمان">
+                                <span class="emoji">🏠</span> جبل عمان
+                            </button>
+                            <button type="button" class="preset-btn" data-location="المدينة الرياضية - عمان">
+                                <span class="emoji">⚽</span> المدينة الرياضية
+                            </button>
+                            <button type="button" class="preset-btn" data-location="ماركا - عمان">
+                                <span class="emoji">🛣️</span> ماركا
+                            </button>
+                            <button type="button" class="preset-btn" data-location="أخرى">
+                                <span class="emoji">✏️</span> أخرى
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hint">📍 اختر موقعاً من القائمة أو اكتب عنواناً مفصلاً</div>
+                    <div class="error-message" id="locationError">يرجى تحديد أو كتابة الموقع</div>
+                </div>
+
+                <!-- وصف العطل -->
+                <div class="form-group full-width" id="issueGroup">
+                    <label for="applianceIssue">وصف العطل بالتفصيل <span class="required-star">*</span></label>
+                    <textarea id="applianceIssue" name="issue" placeholder="اشرح مشكلة الجهاز بأكبر قدر من التفاصيل..." required aria-required="true"></textarea>
+                    <div class="char-count" id="charCount">0 / 500 حرف</div>
+                    <div class="error-message" id="issueError">يرجى كتابة وصف المشكلة</div>
+                </div>
+            </div>
+
+            <!-- ====== الأزرار ====== -->
+            <div class="action-buttons">
+                <button type="button" id="submitBtn" class="btn btn-primary">
+                    📨 إرسال الطلب
+                </button>
+                <button type="button" onclick="copyToClipboard()" class="btn btn-secondary">
+                    📋 نسخ البيانات
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- ====== JAVASCRIPT ====== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ====== العناصر ======
+            const form = document.getElementById('maintenanceForm');
+            const type = document.getElementById('applianceType');
+            const brand = document.getElementById('applianceBrand');
+            const phone = document.getElementById('customerPhone');
+            const locationInput = document.getElementById('customerLocation');
+            const issue = document.getElementById('applianceIssue');
+            const submitBtn = document.getElementById('submitBtn');
+            const charCount = document.getElementById('charCount');
+
+            // ====== أزرار المواقع السريعة ======
+            const presetBtns = document.querySelectorAll('.preset-btn');
+
+            // ====== التحقق من صحة الهاتف ======
+            function validatePhone(value) {
+                const clean = value.replace(/[\s\-\(\)]/g, '');
+                return /^(07|009627|\+9627)[0-9]{8}$/.test(clean);
+            }
+
+            // ====== عرض رسائل الخطأ ======
+            function setError(groupId, message) {
+                const group = document.getElementById(groupId);
+                const errorEl = group.querySelector('.error-message');
+                if (errorEl) {
+                    errorEl.textContent = message || 'يرجى ملء هذا الحقل';
+                    errorEl.classList.add('show');
+                    group.classList.add('error');
+                }
+            }
+
+            function clearError(groupId) {
+                const group = document.getElementById(groupId);
+                const errorEl = group.querySelector('.error-message');
+                if (errorEl) {
+                    errorEl.classList.remove('show');
+                    group.classList.remove('error');
+                }
+            }
+
+            // ====== أزرار الموقع ======
+            presetBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const location = this.dataset.location;
+                    
+                    // إزالة التحديد من جميع الأزرار
+                    presetBtns.forEach(b => b.classList.remove('active'));
+                    
+                    if (location === 'أخرى') {
+                        // إذا كانت "أخرى" → نترك الحقل فارغاً للكتابة
+                        locationInput.value = '';
+                        locationInput.focus();
+                        this.classList.add('active');
+                    } else {
+                        // تعيين الموقع
+                        locationInput.value = location;
+                        this.classList.add('active');
+                    }
+                    
+                    // التحقق الفوري
+                    validateForm();
+                });
+            });
+
+            // ====== تحديث الزر النشط عند الكتابة ======
+            locationInput.addEventListener('input', function() {
+                const value = this.value.trim();
+                let found = false;
+                
+                presetBtns.forEach(btn => {
+                    const loc = btn.dataset.location;
+                    if (loc !== 'أخرى' && value === loc) {
+                        btn.classList.add('active');
+                        found = true;
+                    } else if (loc !== 'أخرى') {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // إذا كانت الكتابة مختلفة عن القوائم
+                if (!found && value.length > 0) {
+                    presetBtns.forEach(btn => {
+                        if (btn.dataset.location === 'أخرى') {
+                            btn.classList.add('active');
+                        }
+                    });
+                } else if (!found && value.length === 0) {
+                    presetBtns.forEach(btn => {
+                        if (btn.dataset.location === 'أخرى') {
+                            btn.classList.remove('active');
+                        }
+                    });
+                }
+            });
+
+            // ====== التحقق من جميع الحقول ======
+            function validateForm() {
+                let isValid = true;
+
+                // نوع الجهاز
+                if (!type.value) {
+                    setError('typeGroup', 'يرجى اختيار نوع الجهاز');
+                    isValid = false;
+                } else {
+                    clearError('typeGroup');
+                }
+
+                // الماركة
+                if (!brand.value.trim()) {
+                    setError('brandGroup', 'يرجى كتابة ماركة الجهاز');
+                    isValid = false;
+                } else {
+                    clearError('brandGroup');
+                }
+
+                // الهاتف
+                if (!validatePhone(phone.value)) {
+                    setError('phoneGroup', 'يرجى إدخال رقم هاتف أردني صحيح (مثال: 0791234567)');
+                    isValid = false;
+                } else {
+                    clearError('phoneGroup');
+                }
+
+                // الموقع (إلزامي)
+                if (!locationInput.value.trim()) {
+                    setError('locationGroup', 'يرجى تحديد أو كتابة الموقع');
+                    isValid = false;
+                } else {
+                    clearError('locationGroup');
+                }
+
+                // وصف العطل
+                if (!issue.value.trim() || issue.value.trim().length < 5) {
+                    setError('issueGroup', 'يرجى كتابة وصف تفصيلي للمشكلة (5 أحرف على الأقل)');
+                    isValid = false;
+                } else {
+                    clearError('issueGroup');
+                }
+
+                return isValid;
+            }
+
+            // ====== عدّاد الأحرف ======
+            issue.addEventListener('input', function() {
+                const len = this.value.length;
+                charCount.textContent = `${len} / 500 حرف`;
+                if (len > 500) {
+                    this.value = this.value.substring(0, 500);
+                    charCount.textContent = '500 / 500 حرف';
+                }
+            });
+
+            // ====== Toast Notifications ======
+            function showToast(message, type = 'success') {
+                const existing = document.querySelector('.toast');
+                if (existing) existing.remove();
+
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `
+                    <span>${message}</span>
+                    <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+                `;
+                document.body.appendChild(toast);
+
+                setTimeout(() => {
+                    if (toast.parentElement) toast.remove();
+                }, 6000);
+            }
+
+            // ====== إرسال عبر واتساب ======
+            function sendWhatsApp(data) {
+                const msg = `📌 *طلب صيانة جديد - سمارت جولد لينك*
+
+        🖥️ *الجهاز:* ${data.get('appliance_type') || 'غير محدد'}
+        🏷️ *الماركة:* ${data.get('brand') || 'غير محدد'}
+        📱 *الهاتف:* ${data.get('phone') || 'غير محدد'}
+        📍 *الموقع:* ${data.get('location') || 'غير محدد'}
+
+        📝 *وصف العطل:*
+        ${data.get('issue') || 'غير محدد'}
+
+        🕐 *تاريخ الطلب:* ${new Date().toLocaleString('ar-JO', { timeZone: 'Asia/Amman', dateStyle: 'medium', timeStyle: 'short' })}`;
+
+                window.open(`https://wa.me/962790252605?text=${encodeURIComponent(msg)}`, '_blank');
+            }
+
+            // ====== الإرسال الرئيسي ======
+            async function handleSubmit() {
+                // التحقق
+                if (!validateForm()) {
+                    showToast('⚠️ يرجى تصحيح الأخطاء في النموذج', 'warning');
+                    return;
+                }
+
+                // حفظ محلي
+                const formData = new FormData(form);
+                const dataObj = Object.fromEntries(formData.entries());
+                localStorage.setItem('last_order', JSON.stringify(dataObj));
+
+                // تعطيل الزر وإظهار تحميل
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner"></span> جاري الإرسال...';
+
+                try {
+                    // محاولة الإرسال عبر Formspree
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        showToast('✅ تم إرسال طلبك بنجاح! سيتم التواصل معك قريباً.', 'success');
+                        sendWhatsApp(formData);
+                        form.reset();
+                        charCount.textContent = '0 / 500 حرف';
+                        // إعادة تعيين الموقع للقيمة الافتراضية
+                        locationInput.value = 'العبدلي - عمان';
+                        presetBtns.forEach(b => b.classList.remove('active'));
+                        document.querySelector('.preset-btn[data-location="العبدلي - عمان"]').classList.add('active');
+                    } else {
+                        throw new Error('فشل الإرسال');
+                    }
+                } catch (error) {
+                    // في حال فشل الإيميل → نرسل واتساب مباشرة
+                    showToast('⚠️ تم فتح واتساب كحل بديل، يرجى إرسال الطلب يدوياً.', 'warning');
+                    sendWhatsApp(formData);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '📨 إرسال الطلب';
+                }
+            }
+
+            // ====== نسخ البيانات ======
+            window.copyToClipboard = function() {
+                const typeVal = type.value || 'غير محدد';
+                const brandVal = brand.value.trim() || 'غير محدد';
+                const phoneVal = phone.value.trim() || 'غير محدد';
+                const locationVal = locationInput.value.trim() || 'غير محدد';
+                const issueVal = issue.value.trim() || 'غير محدد';
+
+                const text = `📌 طلب صيانة - سمارت جولد لينك
+        ================================
+        🖥️ الجهاز: ${typeVal}
+        🏷️ الماركة: ${brandVal}
+        📱 الهاتف: ${phoneVal}
+        📍 الموقع: ${locationVal}
+        📝 الوصف: ${issueVal}
+        ================================
+        📅 ${new Date().toLocaleString('ar-JO', { timeZone: 'Asia/Amman' })}`;
+
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast('📋 تم نسخ البيانات بنجاح!', 'success');
+                }).catch(() => {
+                    // بديل للمتصفحات القديمة
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    textarea.remove();
+                    showToast('📋 تم نسخ البيانات بنجاح!', 'success');
+                });
+            };
+
+            // ====== ربط الحدث ======
+            submitBtn.addEventListener('click', handleSubmit);
+
+            // ====== تحسين: إرسال بالضغط على Enter ======
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+                    const formElements = ['INPUT', 'SELECT'];
+                    if (formElements.includes(e.target.tagName)) {
+                        e.preventDefault();
+                        handleSubmit();
+                    }
+                }
+            });
+
+            // ====== التحقق الفوري عند تغيير الحقول ======
+            type.addEventListener('change', () => validateForm());
+            brand.addEventListener('input', () => validateForm());
+            phone.addEventListener('input', () => validateForm());
+            locationInput.addEventListener('input', () => validateForm());
+            issue.addEventListener('input', () => validateForm());
+
+            // ====== تحسين رقم الهاتف: حذف المسافات تلقائياً ======
+            phone.addEventListener('blur', function() {
+                this.value = this.value.replace(/[\s\-\(\)]/g, '');
+            });
+
+            // ====== تفعيل الزر الافتراضي للموقع ======
+            document.querySelector('.preset-btn[data-location="العبدلي - عمان"]')?.classList.add('active');
+
+            console.log('✅ نموذج الصيانة جاهز للعمل مع موقع العبدلي - عمان كقيمة افتراضية!');
+        })();
+    </script>
+
+</body>
+</html>
