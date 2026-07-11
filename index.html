@@ -2,833 +2,110 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Gold Link - صيانة الأجهزة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Smart Golden Link | نظام الصيانة الذكي</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Tahoma', 'Segoe UI', sans-serif;
-        }
-        body {
-            background: #f4f6f9;
-            color: #1a2a3a;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* ========================================================= */
-        /* HEADER مع العلم الأردني */
-        /* ========================================================= */
-        .main-header {
-            background: linear-gradient(135deg, #0b1a2e, #1a2f3f);
-            padding: 25px 30px 20px 30px;
-            border-radius: 24px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-            border-bottom: 6px solid #d4af37;
-        }
-
-        /* الصف العلوي (العلم + الاسم | الشعار) */
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        /* القسم الأيمن: العلم + اسم المملكة */
-        .jordan-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 8px 18px 8px 14px;
-            border-radius: 60px;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            backdrop-filter: blur(4px);
-            transition: 0.3s;
-        }
-        .jordan-brand:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #d4af37;
-        }
-        .jordan-brand img {
-            height: 45px;
-            width: auto;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        .jordan-brand .text {
-            color: #fff;
-            line-height: 1.3;
-        }
-        .jordan-brand .text .ar {
-            font-size: 16px;
-            font-weight: 700;
-            display: block;
-        }
-        .jordan-brand .text .en {
-            font-size: 11px;
-            font-weight: 300;
-            color: #ccd6e0;
-            letter-spacing: 0.5px;
-            display: block;
-        }
-
-        /* القسم الأوسط: شعار الشركة */
-        .brand-center {
-            text-align: center;
-        }
-        .brand-center h1 {
-            font-size: 34px;
-            color: #fff;
-        }
-        .brand-center h1 i {
-            color: #d4af37;
-            margin-left: 12px;
-        }
-        .brand-center p {
-            color: #ccd6e0;
-            font-size: 16px;
-            margin-top: 2px;
-        }
-        .gold-line {
-            width: 80px;
-            height: 3px;
-            background: #d4af37;
-            margin: 8px auto 0;
-            border-radius: 10px;
-        }
-
-        /* شريط الإحصائيات أسفل الهيدر */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            background: rgba(255,255,255,0.06);
-            padding: 12px 25px;
-            border-radius: 60px;
-            margin-top: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .stats-bar .stat-item {
-            color: #fff;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .stats-bar .stat-item i {
-            color: #d4af37;
-        }
-        .stats-bar .stat-item span {
-            font-weight: 700;
-            font-size: 17px;
-            background: #d4af37;
-            color: #0b1a2e;
-            padding: 0 12px;
-            border-radius: 30px;
-            min-width: 28px;
-            display: inline-block;
-            text-align: center;
-        }
-
-        /* ========================================================= */
-        /* باقي الأقسام (نفس الكود السابق مع تحسينات بسيطة) */
-        /* ========================================================= */
-        .card-white {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 35px 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
-            margin-bottom: 40px;
-            border: 1px solid #eef2f7;
-        }
-        .section-title {
-            font-size: 26px;
-            color: #0b1a2e;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-right: 6px solid #d4af37;
-            padding-right: 18px;
-        }
-        .section-title i {
-            color: #d4af37;
-        }
-
-        /* ميزات الجذب */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-            gap: 18px;
-        }
-        .feature-box {
-            background: #f8fafc;
-            padding: 22px 12px;
-            border-radius: 16px;
-            text-align: center;
-            border: 2px solid transparent;
-            transition: 0.3s;
-        }
-        .feature-box:hover {
-            border-color: #d4af37;
-            background: #fff;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.12);
-        }
-        .feature-box i {
-            font-size: 34px;
-            color: #d4af37;
-            margin-bottom: 8px;
-        }
-        .feature-box h4 {
-            font-size: 15px;
-            color: #0b1a2e;
-        }
-        .feature-box p {
-            font-size: 12px;
-            color: #6a7a8a;
-            margin-top: 4px;
-        }
-
-        /* آراء العملاء */
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        .testimonial-card {
-            background: #fafbfc;
-            padding: 25px;
-            border-radius: 18px;
-            border-right: 5px solid #d4af37;
-        }
-        .testimonial-card .stars { color: #d4af37; margin-bottom: 6px; }
-        .testimonial-card .msg { font-size: 15px; line-height: 1.7; color: #2d3e4e; }
-        .testimonial-card .client {
-            margin-top: 12px;
-            font-weight: 700;
-            color: #0b1a2e;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .testimonial-card .client img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid #d4af37;
-            object-fit: cover;
-        }
-        .testimonial-card .client .loc {
-            font-weight: 400;
-            font-size: 13px;
-            color: #888;
-        }
-
-        /* معرض الصور */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 18px;
-        }
-        .gallery-card {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid #eee;
-        }
-        .gallery-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-        .gallery-card .caption {
-            padding: 12px;
-            text-align: center;
-            font-weight: 600;
-            background: #fafbfc;
-        }
-        .gallery-card .caption i { color: #d4af37; margin-left: 8px; }
-
-        /* الماركات */
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 12px;
-        }
-        .brand-item {
-            background: #f8fafc;
-            text-align: center;
-            padding: 14px 6px;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 13px;
-            border: 2px solid #eef2f7;
-            transition: 0.3s;
-        }
-        .brand-item:hover {
-            border-color: #d4af37;
-            background: #fff;
-            transform: translateY(-3px);
-        }
-        .brand-item i {
-            display: block;
-            font-size: 22px;
-            color: #d4af37;
-            margin-bottom: 4px;
-        }
-
-        /* تواصل / شكاوي */
-        .contact-complaints {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            background: #f8fafc;
-            padding: 25px;
-            border-radius: 18px;
-            border: 2px dashed #d4af37;
-        }
-        .contact-complaints .item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 15px;
-        }
-        .contact-complaints .item i {
-            font-size: 26px;
-            color: #d4af37;
-            width: 40px;
-            text-align: center;
-        }
-        .contact-complaints .item a {
-            color: #0b1a2e;
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .contact-complaints .item a:hover { color: #d4af37; }
-
-        /* الفورم */
-        .form-wrapper {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 35px 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
-            border-top: 6px solid #d4af37;
-            margin-top: 20px;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: #1e2f3f;
-            margin-bottom: 6px;
-            font-size: 14px;
-        }
-        .form-group label i {
-            color: #d4af37;
-            margin-left: 8px;
-            width: 20px;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e6ed;
-            border-radius: 12px;
-            font-size: 15px;
-            background: #f8fafc;
-            transition: 0.3s;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #d4af37;
-            outline: none;
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.12);
-        }
-        .row-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-        .btn-submit {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #d4af37, #b8962e);
-            border: none;
-            border-radius: 14px;
-            font-size: 20px;
-            font-weight: 700;
-            color: #0b1a2e;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
-        }
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
-            background: linear-gradient(135deg, #e2c04a, #c49d2e);
-        }
-        .footer-note {
-            text-align: center;
-            margin-top: 18px;
-            color: #888;
-            font-size: 13px;
-        }
-
-        /* استجابة */
-        @media (max-width: 768px) {
-            .header-top {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .jordan-brand {
-                align-self: flex-start;
-            }
-            .brand-center h1 { font-size: 26px; }
-            .row-2 { grid-template-columns: 1fr; gap: 0; }
-            .testimonial-grid { grid-template-columns: 1fr; }
-            .stats-bar { gap: 12px; flex-wrap: wrap; }
-            .contact-complaints { flex-direction: column; align-items: flex-start; }
-        }
-        @media (max-width: 480px) {
-            .jordan-brand .text .ar { font-size: 13px; }
-            .jordan-brand .text .en { font-size: 9px; }
-            .jordan-brand img { height: 35px; }
-        }
+        :root { --main: #0b1a2e; --gold: #d4af37; --light: #f4f6f9; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--light); color: var(--main); line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .header { background: var(--main); color: var(--gold); text-align: center; padding: 40px; border-bottom: 5px solid var(--gold); border-radius: 20px; }
+        .section { background: white; padding: 25px; border-radius: 15px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h2 { border-right: 4px solid var(--gold); padding-right: 15px; color: var(--main); }
+        select, textarea, input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; }
+        .btn-submit { background: var(--gold); color: white; padding: 15px; width: 100%; border: none; border-radius: 8px; font-weight: bold; font-size: 18px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div class="container">
-
-    <!-- ========================================================= -->
-    <!-- HEADER مع العلم الأردني والاسم -->
-    <!-- ========================================================= -->
-    <div class="main-header">
-
-        <!-- الصف العلوي -->
-        <div class="header-top">
-            <!-- الجهة اليمنى: العلم + اسم المملكة -->
-            <div class="jordan-brand">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c0/Flag_of_Jordan.svg" alt="علم المملكة الأردنية الهاشمية">
-                <div class="text">
-                    <span class="ar">المملكة الأردنية الهاشمية</span>
-                    <span class="en">Hashemite Kingdom of Jordan</span>
-                </div>
-            </div>
-
-            <!-- الجهة الوسطى / اليسرى: شعار الشركة -->
-            <div class="brand-center">
-                <h1><i class="fas fa-tools"></i> Smart Gold Link</h1>
-                <p>صيانة متكاملة للأجهزة المنزلية والمطاعم والقطاعات الحكومية</p>
-                <div class="gold-line"></div>
-            </div>
-        </div>
-
-        <!-- شريط الإحصائيات (عداد الزوار والجنس) -->
-        <div class="stats-bar">
-            <div class="stat-item"><i class="fas fa-eye"></i> زوار اليوم: <span id="todayVisits">0</span></div>
-            <div class="stat-item"><i class="fas fa-users"></i> إجمالي الزوار: <span id="totalVisits">0</span></div>
-            <div class="stat-item"><i class="fas fa-user-check"></i> ذكر: <span id="maleCount">0</span></div>
-            <div class="stat-item"><i class="fas fa-user-friends"></i> أنثى: <span id="femaleCount">0</span></div>
-        </div>
+    <div class="header">
+        <h1>Smart Golden Link</h1>
+        <p>رواد صيانة الأجهزة والخدمات التقنية في الأردن</p>
+        <p style="font-size: 14px; color: white;">عقود صيانة سنوية وشهرية بأسعار تشجيعية</p>
     </div>
 
-    <!-- ========================================================= -->
-    <!-- 1. لماذا تختارنا؟ (عوامل جذب الزبون) -->
-    <!-- ========================================================= -->
-    <div class="card-white">
-        <div class="section-title"><i class="fas fa-star"></i> لماذا تختار Smart Gold Link؟</div>
-        <div class="features-grid">
-            <div class="feature-box"><i class="fas fa-clock"></i><h4>استجابة فورية</h4><p>نصل إليك خلال ساعتين في عمان والمدن الرئيسية</p></div>
-            <div class="feature-box"><i class="fas fa-shield-alt"></i><h4>ضمان 24 شهر</h4><p>ضمان على جميع أعمال الصيانة والتركيب</p></div>
-            <div class="feature-box"><i class="fas fa-cogs"></i><h4>قطع غيار أصلية</h4><p>نستخدم قطع الغيار الأصلية من الوكالات المعتمدة</p></div>
-            <div class="feature-box"><i class="fas fa-user-tie"></i><h4>فنيون خبرة</h4><p>كادر فني مدرب بأعلى المستويات وبخبرات تزيد عن 10 سنوات</p></div>
-            <div class="feature-box"><i class="fas fa-hand-holding-usd"></i><h4>أسعار تنافسية</h4><p>نقدم أفضل الأسعار مع أعلى جودة للخدمة</p></div>
-            <div class="feature-box"><i class="fas fa-headset"></i><h4>خدمة 24/7</h4><p>دعم فني ومتابعة على مدار الساعة طوال أيام الأسبوع</p></div>
-        </div>
-    </div>
+    <div class="section">
+        <h2>نموذج الخدمة المتكامل</h2>
+        <form id="smartForm">
+            <input type="text" id="name" placeholder="الاسم الكامل" required>
+            <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+            
+            <label>المحافظة:</label>
+            <select id="gov" onchange="updateRegions()">
+                <option value="عمان">عمان</option>
+                <option value="معان">معان</option>
+                <option value="الكرك">الكرك</option>
+                <option value="الطفيلة">الطفيلة</option>
+                <option value="عجلون">عجلون</option>
+                <option value="إربد">إربد</option>
+                <option value="جرش">جرش</option>
+            </select>
+            
+            <select id="region"><option>يرجى اختيار المنطقة</option></select>
+            
+            <label>القطاع والخدمة:</label>
+            <select id="sector" onchange="updateServices()">
+                <option value="منزلي">القطاع المنزلي</option>
+                <option value="فندقي">القطاع الفندقي</option>
+                <option value="مصانع">القطاع الصناعي</option>
+                <option value="حكومي">القطاع الحكومي</option>
+            </select>
+            <select id="service"></select>
 
-    <!-- ========================================================= -->
-    <!-- 2. آراء العملاء -->
-    <!-- ========================================================= -->
-    <div class="card-white">
-        <div class="section-title"><i class="fas fa-quote-right"></i> آراء عملائنا الكرام</div>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <div class="msg">"خدمة ممتازة ومتميزة، نشكركم على جهودكم الكبيرة، بارك الله فيكم."</div>
-                <div class="client">
-                    <img src="https://ui-avatars.com/api/?name=فلان+أبو+أحمد&background=d4af37&color=fff&size=45" alt="client">
-                    <div>فلان أبو أحمد <span class="loc"><i class="fas fa-map-pin"></i> مرج الحمام</span></div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <div class="msg">"أشكر شركة Smart Gold Link على مجهوداتهم الرائعة، خدمة ممتازة وموثوقية عالية."</div>
-                <div class="client">
-                    <img src="https://ui-avatars.com/api/?name=السيد+سناء&background=d4af37&color=fff&size=45" alt="client">
-                    <div>السيد سناء <span class="loc"><i class="fas fa-map-pin"></i> عمان</span></div>
-                </div>
-            </div>
-        </div>
-    </div>
+            <label>نوع التعاقد:</label>
+            <select id="contractType">
+                <option value="زيارة واحدة">زيارة واحدة (كشفية)</option>
+                <option value="عقد شهري">عقد صيانة شهري</option>
+                <option value="عقد سنوي">عقد صيانة سنوي (توفير أكثر)</option>
+            </select>
 
-    <!-- ========================================================= -->
-    <!-- 3. الماركات + المعرض (مختصر) -->
-    <!-- ========================================================= -->
-    <div class="card-white">
-        <div class="section-title"><i class="fas fa-trademark"></i> الماركات المعتمدة</div>
-        <div class="brands-grid">
-            <div class="brand-item"><i class="fas fa-microchip"></i> هوندا</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> هيتاشي</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> بيكو</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> شارب</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> إل جي</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> وكستل</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> ليفربول</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> ناشيونال</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> دريم</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> ناشيونال إلكتريك</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> الزامل</div>
-            <div class="brand-item"><i class="fas fa-microchip"></i> كارير</div>
-        </div>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- 4. معرض الصور -->
-    <!-- ========================================================= -->
-    <div class="card-white">
-        <div class="section-title"><i class="fas fa-images"></i> معرض الأجهزة</div>
-        <div class="gallery-grid">
-            <div class="gallery-card"><img src="https://picsum.photos/seed/washer3/400/300" alt="غسالة"><div class="caption"><i class="fas fa-washing-machine"></i> غسالات</div></div>
-            <div class="gallery-card"><img src="https://picsum.photos/seed/fridge3/400/300" alt="ثلاجة"><div class="caption"><i class="fas fa-thermometer-half"></i> ثلاجات</div></div>
-            <div class="gallery-card"><img src="https://picsum.photos/seed/ac3/400/300" alt="مكيف"><div class="caption"><i class="fas fa-snowflake"></i> مكيفات</div></div>
-            <div class="gallery-card"><img src="https://picsum.photos/seed/tv3/400/300" alt="شاشة"><div class="caption"><i class="fas fa-tv"></i> شاشات</div></div>
-        </div>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- 5. رقم الشكاوي + الإيميل -->
-    <!-- ========================================================= -->
-    <div class="card-white">
-        <div class="section-title"><i class="fas fa-headset"></i> تواصل معنا للشكاوي والاستفسارات</div>
-        <div class="contact-complaints">
-            <div class="item"><i class="fas fa-phone-alt"></i> <a href="tel:+962790252605">+962 79 0252 605</a> (شكاوي)</div>
-            <div class="item"><i class="fas fa-envelope"></i> <a href="mailto:support@smartgoldlink.com">support@smartgoldlink.com</a></div>
-            <div class="item"><i class="fab fa-whatsapp"></i> <a href="https://wa.me/962790252605" target="_blank">واتساب للشكاوي</a></div>
-        </div>
-        <p style="margin-top:15px;text-align:center;color:#888;font-size:14px;"><i class="fas fa-clock"></i> فريقنا يرد على جميع الاستفسارات خلال 30 دقيقة</p>
-    </div>
-
-    <!-- ========================================================= -->
-    <!-- 6. نموذج الطلب + عرض السعر -->
-    <!-- ========================================================= -->
-    <div class="form-wrapper" id="orderFormSection">
-        <div class="section-title" style="justify-content:center;border-right:none;padding-right:0;">
-            <i class="fas fa-pen-alt"></i> اطلب خدمة الصيانة أو عرض سعر
-        </div>
-
-        <form id="orderForm" onsubmit="handleSubmit(event)">
-
-            <div class="row-2">
-                <div class="form-group">
-                    <label><i class="fas fa-user"></i> الاسم الكامل</label>
-                    <input type="text" id="customerName" placeholder="أدخل اسمك" required>
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-phone-alt"></i> رقم الهاتف</label>
-                    <input type="tel" id="customerPhone" placeholder="مثال: 0790123456" required>
-                </div>
-            </div>
-
-            <div class="row-2">
-                <div class="form-group">
-                    <label><i class="fas fa-venus-mars"></i> الجنس</label>
-                    <select id="genderSelect">
-                        <option value="غير محدد">غير محدد</option>
-                        <option value="ذكر">ذكر</option>
-                        <option value="أنثى">أنثى</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-file-invoice"></i> نوع الطلب</label>
-                    <select id="requestTypeSelect">
-                        <option value="صيانة">صيانة</option>
-                        <option value="عرض سعر">عرض سعر</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row-2">
-                <div class="form-group">
-                    <label><i class="fas fa-briefcase"></i> القطاع</label>
-                    <select id="sectorSelect" required></select>
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-microchip"></i> الجهاز</label>
-                    <select id="deviceSelect" required></select>
-                </div>
-            </div>
-
-            <div class="row-2">
-                <div class="form-group">
-                    <label><i class="fas fa-map-marker-alt"></i> المحافظة</label>
-                    <select id="governorateSelect" required></select>
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-city"></i> المنطقة</label>
-                    <select id="villageSelect" required></select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label><i class="fas fa-exclamation-triangle"></i> وصف العطل / تفاصيل الطلب</label>
-                <textarea id="issueDesc" placeholder="اكتب تفاصيل العطل، أو نوع الجهاز المطلوب لعرض السعر..." required></textarea>
-            </div>
-
-            <div class="row-2">
-                <div class="form-group">
-                    <label><i class="fas fa-clock"></i> نوع الزيارة</label>
-                    <select id="orderTypeSelect" required></select>
-                </div>
-                <div class="form-group">
-                    <label><i class="fas fa-wallet"></i> طريقة الدفع</label>
-                    <select id="paymentSelect" required></select>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-submit">
-                <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
-            </button>
-            <div class="footer-note"><i class="fas fa-lock"></i> معلوماتك آمنة وستصل مباشرة لمدير الخدمة</div>
+            <textarea id="details" placeholder="شرح طبيعة العطل (ماتور، غاز، شاشة، لوحة إلكترونية..)"></textarea>
+            
+            <button type="button" class="btn-submit" onclick="sendToWhatsApp()">إرسال الطلب عبر واتساب</button>
         </form>
     </div>
-
 </div>
 
-<!-- ========================================================= -->
-<!-- جافا سكريبت -->
-<!-- ========================================================= -->
 <script>
-    // ================================================================
-    // 1. عداد الزوار (localStorage)
-    // ================================================================
-    (function initVisitors() {
-        const today = new Date().toDateString();
-        let total = parseInt(localStorage.getItem('smartGold_totalVisits')) || 0;
-        let lastDate = localStorage.getItem('smartGold_lastDate') || '';
-        let todayCount = parseInt(localStorage.getItem('smartGold_todayVisits')) || 0;
-
-        if (lastDate !== today) {
-            todayCount = 0;
-            localStorage.setItem('smartGold_lastDate', today);
-        }
-
-        total += 1;
-        todayCount += 1;
-
-        localStorage.setItem('smartGold_totalVisits', total);
-        localStorage.setItem('smartGold_todayVisits', todayCount);
-
-        document.getElementById('totalVisits').textContent = total;
-        document.getElementById('todayVisits').textContent = todayCount;
-
-        let male = parseInt(localStorage.getItem('smartGold_male')) || 0;
-        let female = parseInt(localStorage.getItem('smartGold_female')) || 0;
-        document.getElementById('maleCount').textContent = male;
-        document.getElementById('femaleCount').textContent = female;
-
-        window.updateGenderCount = function(gender) {
-            let male = parseInt(localStorage.getItem('smartGold_male')) || 0;
-            let female = parseInt(localStorage.getItem('smartGold_female')) || 0;
-            if (gender === 'ذكر') male += 1;
-            else if (gender === 'أنثى') female += 1;
-            localStorage.setItem('smartGold_male', male);
-            localStorage.setItem('smartGold_female', female);
-            document.getElementById('maleCount').textContent = male;
-            document.getElementById('femaleCount').textContent = female;
-        };
-    })();
-
-    // ================================================================
-    // 2. البيانات الأساسية
-    // ================================================================
-    const SmartGoldData = {
-        adminPhone: "962790252605",
-        sectors: {
-            "منزلي": ["غسالة", "ثلاجة", "جلاية", "مكيف", "شاشات"],
-            "مطاعم": ["ثلاجات تجارية", "أفران صناعية", "ماكينة قهوة", "غرف تبريد"],
-            "صناعي": ["لوحات تحكم", "معدات طاقة", "محركات ضخ"],
-            "شركات": ["تكييف مركزي", "أجهزة مكتبية"],
-            "حكومي": ["صيانة عامة", "تكييف وتبريد"]
-        },
-        locations: {
-            "معان": ["مدينة معان", "الجفر", "إيل", "بسطة", "وادي موسى"],
-            "عمان": ["سحاب", "ماركا", "القويسمة", "تلاع العلي", "صويلح"],
-            "العقبة": ["مدينة العقبة", "القويرة", "الديسة"],
-            "إربد": ["إربد المركز", "الرمثا", "بني كنانة"]
-        },
-        orderTypes: ["زيارة فورية", "زيارة طوارئ", "موعد عادي"],
-        paymentMethods: ["نقدًا", "كليك (CliQ)", "محفظة إلكترونية"]
+    const data = {
+        "عمان": ["عمان الغربية (الصويفية، الرابية)", "عمان الشمالية", "عمان الشرقية", "وسط البلد"],
+        "معان": ["مدينة معان", "وادي موسى"],
+        "الكرك": ["الكرك المركز", "المزار"],
+        "إربد": ["إربد المركز", "الرمثا"]
+    };
+    
+    const services = {
+        "منزلي": ["صيانة غسالات", "شحن غاز ثلاجات", "صيانة مكيفات"],
+        "فندقي": ["صيانة غرف التبريد", "أفران صناعية"],
+        "مصانع": ["لوحات تحكم كهربائية", "معدات طاقة"],
+        "حكومي": ["عقود صيانة شاملة"]
     };
 
-    // ================================================================
-    // 3. دوال تعبئة القوائم
-    // ================================================================
-    function populateSectors() {
-        const select = document.getElementById('sectorSelect');
-        select.innerHTML = '';
-        Object.keys(SmartGoldData.sectors).forEach(s => {
-            const opt = document.createElement('option');
-            opt.value = s;
-            opt.textContent = s;
-            select.appendChild(opt);
-        });
-        updateDevices();
+    function updateRegions() {
+        const gov = document.getElementById('gov').value;
+        const regionSel = document.getElementById('region');
+        regionSel.innerHTML = data[gov].map(r => `<option>${r}</option>`).join('');
     }
 
-    function populateGovernorates() {
-        const select = document.getElementById('governorateSelect');
-        select.innerHTML = '';
-        Object.keys(SmartGoldData.locations).forEach(g => {
-            const opt = document.createElement('option');
-            opt.value = g;
-            opt.textContent = g;
-            select.appendChild(opt);
-        });
-        updateVillages();
+    function updateServices() {
+        const sector = document.getElementById('sector').value;
+        const serviceSel = document.getElementById('service');
+        serviceSel.innerHTML = services[sector].map(s => `<option>${s}</option>`).join('');
     }
 
-    function updateDevices() {
-        const sector = document.getElementById('sectorSelect').value;
-        const ds = document.getElementById('deviceSelect');
-        ds.innerHTML = '';
-        (SmartGoldData.sectors[sector] || []).forEach(d => {
-            const opt = document.createElement('option');
-            opt.value = d;
-            opt.textContent = d;
-            ds.appendChild(opt);
-        });
+    function sendToWhatsApp() {
+        const msg = `طلب صيانة جديد من Smart Golden Link:
+        الاسم: ${document.getElementById('name').value}
+        الهاتف: ${document.getElementById('phone').value}
+        الموقع: ${document.getElementById('gov').value} - ${document.getElementById('region').value}
+        القطاع: ${document.getElementById('sector').value}
+        الخدمة: ${document.getElementById('service').value}
+        نوع التعاقد: ${document.getElementById('contractType').value}
+        التفاصيل: ${document.getElementById('details').value}`;
+        
+        window.open(`https://wa.me/962790252605?text=${encodeURIComponent(msg)}`, '_blank');
     }
-
-    function updateVillages() {
-        const gov = document.getElementById('governorateSelect').value;
-        const vs = document.getElementById('villageSelect');
-        vs.innerHTML = '';
-        (SmartGoldData.locations[gov] || []).forEach(v => {
-            const opt = document.createElement('option');
-            opt.value = v;
-            opt.textContent = v;
-            vs.appendChild(opt);
-        });
-    }
-
-    function populateOptions() {
-        const typeSel = document.getElementById('orderTypeSelect');
-        typeSel.innerHTML = '';
-        SmartGoldData.orderTypes.forEach(t => {
-            const opt = document.createElement('option');
-            opt.value = t;
-            opt.textContent = t;
-            typeSel.appendChild(opt);
-        });
-        const paySel = document.getElementById('paymentSelect');
-        paySel.innerHTML = '';
-        SmartGoldData.paymentMethods.forEach(p => {
-            const opt = document.createElement('option');
-            opt.value = p;
-            opt.textContent = p;
-            paySel.appendChild(opt);
-        });
-    }
-
-    // ================================================================
-    // 4. توليد رسالة واتساب
-    // ================================================================
-    function generateWhatsAppMessage(data) {
-        const raw =
-            `طلب خدمة جديد من Smart Gold Link:\n` +
-            `الاسم: ${data.name}\n` +
-            `الجنس: ${data.gender}\n` +
-            `الهاتف: ${data.phone}\n` +
-            `نوع الطلب: ${data.requestType}\n` +
-            `القطاع: ${data.sector}\n` +
-            `الموقع: ${data.governorate} - ${data.village}\n` +
-            `الجهاز: ${data.device}\n` +
-            `التفاصيل: ${data.issue}\n` +
-            `نوع الزيارة: ${data.type}\n` +
-            `طريقة الدفع: ${data.payment}`;
-        return encodeURIComponent(raw);
-    }
-
-    // ================================================================
-    // 5. معالج الإرسال
-    // ================================================================
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        const gender = document.getElementById('genderSelect').value;
-        if (gender !== 'غير محدد') window.updateGenderCount(gender);
-
-        const formData = {
-            name: document.getElementById('customerName').value.trim(),
-            gender: gender,
-            phone: document.getElementById('customerPhone').value.trim(),
-            requestType: document.getElementById('requestTypeSelect').value,
-            sector: document.getElementById('sectorSelect').value,
-            governorate: document.getElementById('governorateSelect').value,
-            village: document.getElementById('villageSelect').value,
-            device: document.getElementById('deviceSelect').value,
-            issue: document.getElementById('issueDesc').value.trim(),
-            type: document.getElementById('orderTypeSelect').value,
-            payment: document.getElementById('paymentSelect').value
-        };
-
-        if (!formData.name || !formData.phone) {
-            alert('الرجاء تعبئة الاسم ورقم الهاتف بشكل صحيح.');
-            return;
-        }
-
-        const encoded = generateWhatsAppMessage(formData);
-        window.open(`https://wa.me/${SmartGoldData.adminPhone}?text=${encoded}`, '_blank');
-    }
-
-    // ================================================================
-    // 6. التشغيل عند التحميل
-    // ================================================================
-    document.addEventListener('DOMContentLoaded', function() {
-        populateSectors();
-        populateGovernorates();
-        populateOptions();
-
-        document.getElementById('sectorSelect').addEventListener('change', updateDevices);
-        document.getElementById('governorateSelect').addEventListener('change', updateVillages);
-    });
+    
+    updateRegions(); updateServices();
 </script>
-
 </body>
 </html>
