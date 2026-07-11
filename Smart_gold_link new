@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة سمارت جولد لينك | صيانة الأجهزة المنزلية والتكييف</title>
+    <style>
+        /* ===== المتغيرات العامة ===== */
+        :root {
+            --royal-blue: #0f2b5c;
+            --light-blue: #1a448a;
+            --gold: #d4af37;
+            --dark-gold: #aa841c;
+            --bg-gradient: linear-gradient(135deg, #f4f6f9 0%, #eef1f6 100%);
+            --text-dark: #222;
+            --whatsapp-green: #25d366;
+            --danger-red: #d9534f;
+            --success-green: #28a745;
+        }
+
+        /* ===== إعادة ضبط عام ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* ===== شريط الماركات المتحرك ===== */
+        .top-ticker {
+            background: var(--royal-blue);
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 10px 0;
+            border-bottom: 3px solid var(--gold);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .ticker-wrap {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 25px;
+            font-weight: bold;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .ticker-item span {
+            color: var(--gold);
+            margin-left: 5px;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(100%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* ===== الحاوية الرئيسية ===== */
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(15,43,92,0.08);
+        }
+
+        /* ===== الهيدر ===== */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eef1f6;
+            padding-bottom: 25px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .title-area h1 {
+            color: var(--royal-blue);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .title-area h1 span {
+            color: var(--gold);
+        }
+        .title-area p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* ===== العلم الأردني ===== */
+        .jordan-flag-container {
+            text-align: center;
+            font-size: 11px;
+            color: var(--royal-blue);
+            font-weight: bold;
+            line-height: 1.3;
+        }
+        .jordan-flag {
+            width: 90px;
+            height: 45px;
+            position: relative;
+            background: #000;
+            border: 1px solid #ddd;
+            margin: 0 auto 5px auto;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        .flag-white {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: #fff;
+        }
+        .flag-green {
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: #007a3d;
+        }
+        .flag-triangle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-top: 22.5px solid transparent;
+            border-bottom: 22.5px solid transparent;
+            border-right: 35px solid #ce1126;
+            z-index: 2;
+        }
+        .heptagram-star {
+            position: absolute;
+            top: -3px;
+            right: -24px;
+            color: #fff;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            z-index: 3;
+        }
+
+        /* ===== العناوين ===== */
+        .section-title {
+            color: var(--royal-blue);
+            font-size: 20px;
+            border-right: 4px solid var(--gold);
+            padding-right: 12px;
+            margin: 35px 0 20px 0;
+            font-weight: bold;
+        }
+
+        /* ===== بطاقات التخصصات ===== */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .spec-card {
+            background: #f8f9fa;
+            border: 1px solid #eef1f6;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .spec-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .spec-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .spec-card h3 {
+            font-size: 16px;
+            color: var(--royal-blue);
+            margin-bottom: 8px;
+        }
+        .spec-card p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* ===== نموذج الطلب ===== */
+        .form-box {
+            background: #fdfdfd;
+            border: 1px solid #e3e7ed;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.01);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        label {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--royal-blue);
+            font-size: 14px;
+        }
+        input, select, textarea {
+            padding: 12px;
+            background-color: #fafbfc;
+            border: 1px solid #ccd4e0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--gold);
+            background-color: #fff;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        /* ===== رسائل الحالة ===== */
+        .status-msg {
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            display: none;
+        }
+        .status-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-right: 5px solid var(--success-green);
+        }
+        .status-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-right: 5px solid var(--danger-red);
+        }
+
+        /* ===== الأزرار ===== */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-save {
+            background-color: var(--royal-blue);
+        }
+        .btn-save:hover {
+            background-color: var(--light-blue);
+        }
+        .btn-whatsapp {
+            background-color: #ccc;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .btn-whatsapp.active {
+            background-color: var(--whatsapp-green);
+            cursor: pointer;
+            pointer-events: auto;
+        }
+        .btn-whatsapp.active:hover {
+            background-color: #128c7e;
+        }
+        .btn-reset {
+            background-color: #6c757d;
+        }
+        .btn-reset:hover {
+            background-color: #5a6268;
+        }
+
+        /* ===== تذييل ===== */
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 50px;
+            border-top: 1px solid #eef1f6;
+            padding-top: 25px;
+        }
+
+        /* ===== استجابة للشاشات الصغيرة ===== */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            .header-container {
+                text-align: center;
+                justify-content: center;
+            }
+            .jordan-flag-container {
+                margin: 0 auto;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .btn {
+                min-width: unset;
+            }
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== شريط الماركات ===== -->
+    <div class="top-ticker">
+        <div class="ticker-wrap">
+            <div class="ticker-item"><span>•</span> إل جي LG</div>
+            <div class="ticker-item"><span>•</span> بستال VESTEL</div>
+            <div class="ticker-item"><span>•</span> شارب SHARP</div>
+            <div class="ticker-item"><span>•</span> هونداي HYUNDAI</div>
+            <div class="ticker-item"><span>•</span> هيتاشي HITACHI</div>
+            <div class="ticker-item"><span>•</span> أوكس AUX</div>
+            <div class="ticker-item"><span>•</span> جري GREE</div>
+            <div class="ticker-item"><span>•</span> شيكو CHIGO</div>
+            <div class="ticker-item"><span>•</span> سونا SONA</div>
+            <div class="ticker-item"><span>•</span> سيمينز SIEMENS</div>
+            <div class="ticker-item"><span>•</span> كاندي CANDY</div>
+            <div class="ticker-item"><span>•</span> زامل ZAMIL</div>
+            <div class="ticker-item"><span>•</span> كارير CARRIER</div>
+            <!-- تكرار لضمان انسيابية الحركة -->
+            <div class="ticker-item"><span>•</span> إل جي LG</div>
+            <div class="ticker-item"><span>•</span> بستال VESTEL</div>
+            <div class="ticker-item"><span>•</span> شارب SHARP</div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- ===== الهيدر ===== -->
+        <header class="header-container">
+            <div class="title-area">
+                <h1>شركة <span>سمارت جولد لينك</span> للصيانة والتكييف</h1>
+                <p>التميز والأمان في خدمة منزلك - مرخصة ومسجلة منذ عام 2008 لدى وزارة الصناعة والتجارة</p>
+                <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+                    <a href="tel:0790252605" class="btn btn-save" style="padding:8px 15px; font-size:13px; max-width:200px;">اتصال مباشر 📞</a>
+                </div>
+            </div>
+            <div class="jordan-flag-container">
+                <div class="jordan-flag">
+                    <div class="flag-white"></div>
+                    <div class="flag-green"></div>
+                    <div class="flag-triangle">
+                        <span class="heptagram-star">★</span>
+                    </div>
+                </div>
+                <div>المملكة الأردنية الهاشمية</div>
+                <div style="font-weight:normal; opacity:0.7;">Hashemite Kingdom of Jordan</div>
+            </div>
+        </header>
+
+        <!-- ===== التخصصات ===== -->
+        <section>
+            <div class="section-title">نبذة عن تخصصات وأعمال الشركة المعتمدة</div>
+            <p style="font-size:14px; color:#555; margin-bottom:20px;">نختص في شركة سمارت جولد لينك بتقديم حلول صيانة متكاملة وفورية لجميع الماركات العالمية والمحليّة بأيدي فنيين محترفين مع توفير قطع الغيار الأصلية المكفولة:</p>
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <span class="spec-icon">🧺</span>
+                    <h3>صيانة غسالات الملابس</h3>
+                    <p>معالجة الأعطال الميكانيكية والبرمجية وتوفير قطع غيار أصلية.</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-icon">🍽️</span>
+                    <h3>صيانة جلايات الصحون</h3>
+                    <p>تنظيف وصيانة دورية وإصلاح أنظمة ضخ المياه واللوحات.</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-icon">❄️</span>
+                    <h3>ثلاجات وفريزرات</h3>
+                    <p>إصلاح الكومبريسورات، معالجة مشاكل التبريد والغاز الكلي.</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-icon">💨</span>
+                    <h3>أنظمة التكييف والتبريد</h3>
+                    <p>فك، تركيب، غسيل فلاتر، وتعبئة الغاز لجميع أنواع المكيفات.</p>
+                </div>
+                <div class="spec-card">
+                    <span class="spec-icon">📺</span>
+                    <h3>شاشات وأجهزة مطبخ صغيرة</h3>
+                    <p>إصلاح الشاشات الذكية، المحماصات، وكافة المستلزمات بدقة.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== نموذج الحجز ===== -->
+        <section>
+            <div class="section-title">نموذج حجز موعد زيارة وفحص فني ملزم</div>
+            <div class="form-box">
+                <form id="maintenanceForm" novalidate>
+                    <div class="form-grid">
+                        <!-- نوع الجهاز -->
+                        <div class="form-group">
+                            <label for="applianceType">نوع الجهاز المراد إصلاحه:</label>
+                            <select id="applianceType">
+                                <option value="مكيف / نظام تكييف وتبريد">مكيف / نظام تكييف وتبريد</option>
+                                <option value="غسالة ملابس">غسالة ملابس</option>
+                                <option value="جلاية صحون">جلاية صحون</option>
+                                <option value="ثلاجة / فريزر عمودي">ثلاجة / فريزر عمودي</option>
+                                <option value="شاشة ذكية / تلفزيون">شاشة ذكية / تلفزيون</option>
+                                <option value="محماصة / أجهزة مطبخ صغيرة">محماصة / أجهزة مطبخ صغيرة</option>
+                            </select>
+                        </div>
+                        <!-- الماركة -->
+                        <div class="form-group">
+                            <label for="applianceBrand">ماركة وصانع الجهاز:</label>
+                            <input type="text" id="applianceBrand" placeholder="مثال: LG, Sharp, Vestel..." required>
+                        </div>
+                        <!-- وصف العطل -->
+                        <div class="form-group full-width">
+                            <label for="applianceIssue">تفاصيل عطل الجهاز المشكو منه:</label>
+                            <textarea id="applianceIssue" placeholder="يرجى وصف المشكلة بوضوح للفني الميداني..." required></textarea>
+                        </div>
+                        <!-- تاريخ الزيارة -->
+                        <div class="form-group">
+                            <label for="visitDate">تاريخ طلب الزيارة الفنية (آلي ذكي):</label>
+                            <input type="date" id="visitDate" required>
+                        </div>
+                        <!-- المحافظة -->
+                        <div class="form-group">
+                            <label for="customerCity">المحافظة (تغطية شاملة للمحافظات الـ 12):</label>
+                            <select id="customerCity">
+                                <option value="العاصمة عمان">العاصمة عمان</option>
+                                <option value="إربد">إربد</option>
+                                <option value="الزرقاء">الزرقاء</option>
+                                <option value="البلقاء">البلقاء</option>
+                                <option value="المفرق">المفرق</option>
+                                <option value="جرش">جرش</option>
+                                <option value="عجلون">عجلون</option>
+                                <option value="مأدبا">مأدبا</option>
+                                <option value="الكرك">الكرك</option>
+                                <option value="الطفيلة">الطفيلة</option>
+                                <option value="معان">معان</option>
+                                <option value="العقبة">العقبة</option>
+                            </select>
+                        </div>
+                        <!-- الحي -->
+                        <div class="form-group">
+                            <label for="customerArea">الحي والمنطقة بالتفصيل:</label>
+                            <input type="text" id="customerArea" placeholder="مثال: العبدلي، تلاع العلي..." required>
+                        </div>
+                        <!-- الشارع -->
+                        <div class="form-group">
+                            <label for="customerStreet">الشارع واسم العمارة:</label>
+                            <input type="text" id="customerStreet" placeholder="رقم أو اسم الشارع والعمارة" required>
+                        </div>
+                        <!-- الطابق -->
+                        <div class="form-group">
+                            <label for="customerFloor">رقم الطابق أو الشقة:</label>
+                            <input type="text" id="customerFloor" placeholder="مثال: الطابق الثاني - شقة 5" required>
+                        </div>
+                        <!-- الهاتف -->
+                        <div class="form-group">
+                            <label for="customerPhone">رقم هاتف العميل للتنسيق المباشر:</label>
+                            <input type="tel" id="customerPhone" placeholder="07XXXXXXXX" required>
+                        </div>
+                    </div>
+
+                    <!-- رسائل الحالة -->
+                    <div id="saveNotification" class="status-msg status-success">✓ تم حفظ مدخلاتك وبيانات موقعك بنجاح في سجلات المتصفح المؤقتة! يمكنك الآن النقر على زر الإرسال المباشر للواتساب لتأكيد الطلب الفوري مع الإدارة.</div>
+                    <div id="errorNotification" class="status-msg status-error"></div>
+
+                    <!-- الأزرار -->
+                    <div class="action-buttons">
+                        <button type="button" onclick="saveDataProgress()" class="btn btn-save">خطوة 1: حفظ بيانات الطلب 💾</button>
+                        <button type="button" onclick="sendToWhatsapp()" id="whatsappBtn" class="btn btn-whatsapp">خطوة 2: إرسال البيانات المنسقة عبر الواتساب 🚀</button>
+                        <button type="button" onclick="resetForm()" class="btn btn-reset">إعادة تعيين النموذج 🔄</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ===== التذييل ===== -->
+        <footer>
+            <div style="text-align:center; margin-bottom:20px;">
+                <p style="font-weight:bold; color:var(--royal-blue); margin-bottom:10px;">روابط التواصل المباشر مع إدارة العناية بالعملاء:</p>
+                <a href="https://www.instagram.com/fahed_ayel_slman?igsh=MWF2Mm83aG1rODZhdQ==" target="_blank" style="color:var(--dark-gold); text-decoration:none; font-weight:bold; margin:0 10px;">📸 انستغرام الإدارة العامة</a>
+                <a href="https://www.youtube.com/@fahdhatmalalsudi" target="_blank" style="color:#cd201f; text-decoration:none; font-weight:bold; margin:0 10px;">🎥 يوتيوب الإدارة العامة</a>
+            </div>
+            <div class="footer">
+                جميع الحقوق محفوظة © <strong>شركة سمارت جولد لينك للأجهزة والتكييف</strong><br>
+                بإشراف المدير العام: السيد فهد السعودي | المقر الرئيسي: عمان - العبدلي - المملكة الأردنية الهاشمية
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- ===== جافا سكريبت محسّن ===== -->
+    <script>
+        (function() {
+            "use strict";
+
+            // ===== 1. تعيين تاريخ اليوم تلقائياً =====
+            function setDefaultDate() {
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                const mm = String(today.getMonth() + 1).padStart(2, '0');
+                const dd = String(today.getDate()).padStart(2, '0');
+                const dateInput = document.getElementById('visitDate');
+                if (dateInput) {
+                    dateInput.value = `${yyyy}-${mm}-${dd}`;
+                }
+            }
+
+            // ===== 2. التحقق من صحة الحقول المطلوبة =====
+            function validateForm() {
+                const brand = document.getElementById('applianceBrand').value.trim();
+                const issue = document.getElementById('applianceIssue').value.trim();
+                const area = document.getElementById('customerArea').value.trim();
+                const street = document.getElementById('customerStreet').value.trim();
+                const floor = document.getElementById('customerFloor').value.trim();
+                const phone = document.getElementById('customerPhone').value.trim();
+
+                // التحقق من أن جميع الحقول مليئة
+                if (!brand || !issue || !area || !street || !floor || !phone) {
+                    showError('يرجى تعبئة كافة الحقول المطلوبة (العلامة التجارية، وصف العطل، المنطقة، الشارع، الطابق، الهاتف).');
+                    return false;
+                }
+
+                // التحقق من صحة رقم الهاتف (أرقام فقط وتبدأ بـ 07 أو 05)
+                const phoneRegex = /^(07|05)[0-9]{8}$/;
+                if (!phoneRegex.test(phone)) {
+                    showError('رقم الهاتف غير صحيح. يجب أن يتكون من 10 أرقام ويبدأ بـ 07 أو 05 (مثال: 0790252605).');
+                    return false;
+                }
+
+                hideError();
+                return true;
+            }
+
+            // ===== 3. عرض/إخفاء رسائل الخطأ =====
+            function showError(msg) {
+                const errDiv = document.getElementById('errorNotification');
+                errDiv.textContent = '❌ ' + msg;
+                errDiv.style.display = 'block';
+                // إخفاء رسالة النجاح إذا ظهرت
+                document.getElementById('saveNotification').style.display = 'none';
+            }
+            function hideError() {
+                document.getElementById('errorNotification').style.display = 'none';
+            }
+
+            // ===== 4. حفظ البيانات وتفعيل زر الواتساب =====
+            window.saveDataProgress = function() {
+                if (validateForm()) {
+                    // إظهار رسالة النجاح
+                    document.getElementById('saveNotification').style.display = 'block';
+                    // تفعيل زر الواتساب
+                    const whatsappBtn = document.getElementById('whatsappBtn');
+                    whatsappBtn.classList.add('active');
+                    // إخفاء أي رسالة خطأ سابقة
+                    hideError();
+                }
+            };
+
+            // ===== 5. إرسال البيانات عبر الواتساب =====
+            window.sendToWhatsapp = function() {
+                const whatsappBtn = document.getElementById('whatsappBtn');
+                if (!whatsappBtn.classList.contains('active')) {
+                    alert('⚠️ يرجى الضغط على "حفظ بيانات الطلب" أولاً للتأكد من صحة المدخلات.');
+                    return;
+                }
+
+                // جمع البيانات
+                const applianceType = document.getElementById('applianceType').value;
+                const applianceBrand = document.getElementById('applianceBrand').value.trim();
+                const applianceIssue = document.getElementById('applianceIssue').value.trim();
+                const visitDate = document.getElementById('visitDate').value;
+                const customerCity = document.getElementById('customerCity').value;
+                const customerArea = document.getElementById('customerArea').value.trim();
+                const customerStreet = document.getElementById('customerStreet').value.trim();
+                const customerFloor = document.getElementById('customerFloor').value.trim();
+                const customerPhone = document.getElementById('customerPhone').value.trim();
+
+                // بناء نص الرسالة (تم ترميزه لـ URL)
+                const baseMessage = 
+                    `*طلب صيانة صادر عن الموقع الإلكتروني لشركة سمارت جولد لينك*%0A%0A` +
+                    `*🛠️ تفاصيل البلاغ:*%0A` +
+                    `- نوع الجهاز: ${encodeURIComponent(applianceType)}%0A` +
+                    `- ماركة الجهاز: ${encodeURIComponent(applianceBrand)}%0A` +
+                    `- وصف المشكلة: ${encodeURIComponent(applianceIssue)}%0A` +
+                    `- تاريخ الزيارة المطلوبة: ${encodeURIComponent(visitDate)}%0A%0A` +
+                    `*📍 موقع العميل المعتمد:*%0A` +
+                    `- المحافظة: ${encodeURIComponent(customerCity)}%0A` +
+                    `- المنطقة/الحي: ${encodeURIComponent(customerArea)}%0A` +
+                    `- الشارع/العمارة: ${encodeURIComponent(customerStreet)}%0A` +
+                    `- الطابق/الشقة: ${encodeURIComponent(customerFloor)}%0A%0A` +
+                    `*📞 رقم اتصال التنسيق:*%0A` +
+                    `- الهاتف: ${encodeURIComponent(customerPhone)}`;
+
+                // رقم الواتساب (مع رمز الدولة الأردن 962)
+                const phoneNumber = '962790252605';
+                const url = `https://wa.me/${phoneNumber}?text=${baseMessage}`;
+
+                // فتح الرابط في تبويب جديد
+                window.open(url, '_blank');
+            };
+
+            // ===== 6. إعادة تعيين النموذج =====
+            window.resetForm = function() {
+                document.getElementById('maintenanceForm').reset();
+                // إعادة تعيين التاريخ إلى اليوم الحالي
+                setDefaultDate();
+                // إخفاء الرسائل
+                document.getElementById('saveNotification').style.display = 'none';
+                document.getElementById('errorNotification').style.display = 'none';
+                // إلغاء تفعيل زر الواتساب
+                const whatsappBtn = document.getElementById('whatsappBtn');
+                whatsappBtn.classList.remove('active');
+            };
+
+            // ===== 7. تهيئة الصفحة =====
+            document.addEventListener('DOMContentLoaded', function() {
+                setDefaultDate();
+                // إضافة مستمع للتحقق الفوري عند تغيير الحقول (اختياري)
+                // يمكنك إضافة validation on blur إذا أردت
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
